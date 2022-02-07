@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 
 import Navbar from "../Components/Navbar/Navbar";
 
+//Interface
+import APIUser from "../Interfaces/APIUser";
+
 import "../App.css";
 import "../AppS.css";
 
@@ -16,7 +19,13 @@ import "../AppS.css";
 
 const UserPage = () => {
   const [users, setUsers] = useState([]);
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState<APIUser>({
+    key:0,
+    userName:"",
+    name:"",
+    email:"",
+    contactNumber:"",
+  });
 
   //Create User
   const [successToast, setSuccessToast] = useState(false);
@@ -60,7 +69,7 @@ const UserPage = () => {
 
   const _createUser = () => {
     if (_formValidation()) {
-      axios.post("http://localhost:5000/user/new", userFields).then((resp) => {
+      axios.post("http://ec2-52-66-249-241.ap-south-1.compute.amazonaws.com:5000/user/new", userFields).then((resp) => {
         if (resp) {
           console.log(resp);
           setSuccessToast(true);
@@ -80,7 +89,7 @@ const UserPage = () => {
   const _getUser = (e: any) => {
     if (e.key === "Enter") {
       axios
-        .get(`http://localhost:5000/user/getUser/${findUser}`)
+        .get(`http://ec2-52-66-249-241.ap-south-1.compute.amazonaws.com:5000/user/getUser/${findUser}`)
         .then((res) => {
           if (res.data) {
             console.log(res.data.resp);
@@ -97,7 +106,7 @@ const UserPage = () => {
   const _getUsers = () => {
     _handleReadAll();
     axios
-      .get("http://localhost:5000/user/getUsers")
+      .get("http://ec2-52-66-249-241.ap-south-1.compute.amazonaws.com:5000/user/getUsers")
       .then((res) => {
         if (res.data) {
           setUsers(res.data.resp);
@@ -118,7 +127,7 @@ const UserPage = () => {
   });
   const _updateUser = () => {
     axios
-      .put(`http://localhost:5000/user/update/${updateUsername}`, updateFields)
+      .put(`http://ec2-52-66-249-241.ap-south-1.compute.amazonaws.com:5000/user/update/${updateUsername}`, updateFields)
       .then((resp) => {
         if (resp) {
           console.log(resp);
@@ -136,7 +145,7 @@ const UserPage = () => {
 
   const _deleteUser = () => {
     axios
-      .delete(`http://localhost:5000/user/delete/${deleteUsername}`)
+      .delete(`http://ec2-52-66-249-241.ap-south-1.compute.amazonaws.com:5000/user/delete/${deleteUsername}`)
       .then((resp) => {
         if (resp) {
           console.log(resp);

@@ -1,10 +1,16 @@
 import axios from "axios";
 import { useState } from "react";
 import Navbar from "../Components/Navbar/Navbar";
+import APINotebook from "../Interfaces/APINotebook";
 
 const NotebookPage = () => {
   const [notes, setNotes] = useState([]);
-  const [note, setNote] = useState({});
+  const [note, setNote] = useState<APINotebook>({
+    key: 0,
+    title: "",
+    userId: 0,
+    description: "",
+  });
 
   //Create User
   const [successToast, setSuccessToast] = useState(false);
@@ -21,7 +27,7 @@ const NotebookPage = () => {
     if (noteFields.title != null && noteFields.title != "") {
       if (noteFields.userId != null && noteFields.userId != "") {
         if (noteFields.description != null && noteFields.description != "") {
-            return true;
+          return true;
         } else {
           return false;
         }
@@ -35,16 +41,21 @@ const NotebookPage = () => {
 
   const _createUser = () => {
     if (_formValidation()) {
-      axios.post("http://localhost:5000/notebook/new", noteFields).then((resp) => {
-        if (resp) {
-          console.log(resp);
-          setSuccessToast(true);
+      axios
+        .post(
+          "http://ec2-52-66-249-241.ap-south-1.compute.amazonaws.com:5000/notebook/new",
+          noteFields
+        )
+        .then((resp) => {
+          if (resp) {
+            console.log(resp);
+            setSuccessToast(true);
 
-          setTimeout(() => {
-            setSuccessToast(false);
-          }, 2000);
-        }
-      });
+            setTimeout(() => {
+              setSuccessToast(false);
+            }, 2000);
+          }
+        });
     } else {
       console.log("Please fill all the fields");
     }
@@ -55,7 +66,9 @@ const NotebookPage = () => {
   const _getUser = (e: any) => {
     if (e.key === "Enter") {
       axios
-        .get(`http://localhost:5000/notebook/read/${findNotes}`)
+        .get(
+          `http://ec2-52-66-249-241.ap-south-1.compute.amazonaws.com:5000/notebook/read/${findNotes}`
+        )
         .then((res) => {
           if (res.data) {
             console.log(res.data.resp);
@@ -72,7 +85,9 @@ const NotebookPage = () => {
   const _getUsers = () => {
     _handleReadAll();
     axios
-      .get("http://localhost:5000/notebook/readAll")
+      .get(
+        "http://ec2-52-66-249-241.ap-south-1.compute.amazonaws.com:5000/notebook/readAll"
+      )
       .then((res) => {
         if (res.data) {
           console.log(res.data);
@@ -94,7 +109,10 @@ const NotebookPage = () => {
   });
   const _updateUser = () => {
     axios
-      .put(`http://localhost:5000/notebook/update/${updateNotes}`, updateFields)
+      .put(
+        `http://ec2-52-66-249-241.ap-south-1.compute.amazonaws.com:5000/notebook/update/${updateNotes}`,
+        updateFields
+      )
       .then((resp) => {
         if (resp) {
           console.log(resp);
@@ -112,7 +130,9 @@ const NotebookPage = () => {
 
   const _deleteUser = () => {
     axios
-      .delete(`http://localhost:5000/notebook/delete/${deleteNotes}`)
+      .delete(
+        `http://ec2-52-66-249-241.ap-south-1.compute.amazonaws.com:5000/notebook/delete/${deleteNotes}`
+      )
       .then((resp) => {
         if (resp) {
           console.log(resp);
@@ -183,7 +203,10 @@ const NotebookPage = () => {
       <div className="users-container-wrapper">
         <div className="users-container">
           <div className="operations">
-            <div onClick={_handleCreate} className="ope create-user notebook-ope">
+            <div
+              onClick={_handleCreate}
+              className="ope create-user notebook-ope"
+            >
               Create Notebook
             </div>
             <div onClick={_handleRead} className="ope get-user notebook-ope">
@@ -192,10 +215,16 @@ const NotebookPage = () => {
             <div onClick={_getUsers} className="ope get-users notebook-ope">
               View All Notebooks
             </div>
-            <div onClick={_handleUpdate} className="ope update-user notebook-ope">
+            <div
+              onClick={_handleUpdate}
+              className="ope update-user notebook-ope"
+            >
               Update Notebook
             </div>
-            <div onClick={_handleDelete} className="ope delete-user notebook-ope">
+            <div
+              onClick={_handleDelete}
+              className="ope delete-user notebook-ope"
+            >
               Delete Notebook
             </div>
           </div>
@@ -376,13 +405,13 @@ const NotebookPage = () => {
         </div>
       </div>
       {successToast ? (
-        <div id="snackbar">User Created Successfully..</div>
+        <div id="snackbar">Notebook Created Successfully..</div>
       ) : null}
       {updateToast ? (
-        <div id="snackbar">User Updated Successfully..</div>
+        <div id="snackbar">Notebook Updated Successfully..</div>
       ) : null}
       {deleteToast ? (
-        <div id="snackbar">User Deleted Successfully..</div>
+        <div id="snackbar">Notebook Deleted Successfully..</div>
       ) : null}
     </div>
   );

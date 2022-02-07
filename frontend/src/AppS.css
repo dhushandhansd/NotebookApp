@@ -412,7 +412,8 @@
       -ms-flex-align: center;
           align-items: center;
   position: absolute;
-  bottom: 15px;
+  left: 35%;
+  bottom: 5px;
 }
 
 .user-window #snackbar.show {

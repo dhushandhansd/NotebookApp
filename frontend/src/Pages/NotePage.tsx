@@ -3,10 +3,18 @@ import "../Components/Navbar/Navbar";
 import "../AppS.css";
 import axios from "axios";
 import Navbar from "../Components/Navbar/Navbar";
+import APINotes from "../Interfaces/APINotes";
 
 const NotePage = () => {
   const [notes, setNotes] = useState([]);
-  const [note, setNote] = useState({});
+  const [note, setNote] = useState<APINotes>({
+    key:0,
+    title:"",
+    userId:0,
+    tags:"",
+    content:"",
+    noteBookId:0
+  });
 
   //Create User
   const [successToast, setSuccessToast] = useState(false);
@@ -47,7 +55,7 @@ const NotePage = () => {
 
   const _createUser = () => {
     if (_formValidation()) {
-      axios.post("http://localhost:5000/notes/new", noteFields).then((resp) => {
+      axios.post("http://ec2-52-66-249-241.ap-south-1.compute.amazonaws.com:5000/notes/new", noteFields).then((resp) => {
         if (resp) {
           console.log(resp);
           setSuccessToast(true);
@@ -67,7 +75,7 @@ const NotePage = () => {
     const _getUser = (e: any) => {
       if (e.key === "Enter") {
         axios
-          .get(`http://localhost:5000/notes/read/${findNotes}`)
+          .get(`http://ec2-52-66-249-241.ap-south-1.compute.amazonaws.com:5000/notes/read/${findNotes}`)
           .then((res) => {
             if (res.data) {
               console.log(res.data.resp);
@@ -84,7 +92,7 @@ const NotePage = () => {
   const _getUsers = () => {
     _handleReadAll();
     axios
-      .get("http://localhost:5000/notes/readAll")
+      .get("http://ec2-52-66-249-241.ap-south-1.compute.amazonaws.com:5000/notes/readAll")
       .then((res) => {
         if (res.data) {
           console.log(res.data);
@@ -106,7 +114,7 @@ const NotePage = () => {
   });
   const _updateUser = () => {
     axios
-      .put(`http://localhost:5000/notes/update/${updateNotes}`, updateFields)
+      .put(`http://ec2-52-66-249-241.ap-south-1.compute.amazonaws.com:5000/notes/update/${updateNotes}`, updateFields)
       .then((resp) => {
         if (resp) {
           console.log(resp);
@@ -124,7 +132,7 @@ const NotePage = () => {
 
   const _deleteUser = () => {
     axios
-      .delete(`http://localhost:5000/notes/delete/${deleteNotes}`)
+      .delete(`http://ec2-52-66-249-241.ap-south-1.compute.amazonaws.com:5000/notes/delete/${deleteNotes}`)
       .then((resp) => {
         if (resp) {
           console.log(resp);
@@ -425,13 +433,13 @@ const NotePage = () => {
         </div>
       </div>
       {successToast ? (
-        <div id="snackbar">User Created Successfully..</div>
+        <div id="snackbar">Notes Created Successfully..</div>
       ) : null}
       {updateToast ? (
-        <div id="snackbar">User Updated Successfully..</div>
+        <div id="snackbar">Notes Updated Successfully..</div>
       ) : null}
       {deleteToast ? (
-        <div id="snackbar">User Deleted Successfully..</div>
+        <div id="snackbar">Notes Deleted Successfully..</div>
       ) : null}
     </div>
   );
