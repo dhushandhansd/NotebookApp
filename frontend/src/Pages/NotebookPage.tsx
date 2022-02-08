@@ -43,7 +43,7 @@ const NotebookPage = () => {
     if (_formValidation()) {
       axios
         .post(
-          "http://localhost:5000/notebook/new",
+          "http://ec2-3-7-254-6.ap-south-1.compute.amazonaws.com:5000/notebook/new",
           noteFields
         )
         .then((resp) => {
@@ -67,7 +67,7 @@ const NotebookPage = () => {
     if (e.key === "Enter") {
       axios
         .get(
-          `http://localhost:5000/notebook/read/${findNotes}`
+          `http://ec2-3-7-254-6.ap-south-1.compute.amazonaws.com:5000/notebook/read/${findNotes}`
         )
         .then((res) => {
           if (res.data) {
@@ -86,7 +86,7 @@ const NotebookPage = () => {
     _handleReadAll();
     axios
       .get(
-        "http://localhost:5000/notebook/readAll"
+        "http://ec2-3-7-254-6.ap-south-1.compute.amazonaws.com:5000/notebook/readAll"
       )
       .then((res) => {
         if (res.data) {
@@ -110,7 +110,7 @@ const NotebookPage = () => {
   const _updateUser = () => {
     axios
       .put(
-        `http://localhost:5000/notebook/update/${updateNotes}`,
+        `http://ec2-3-7-254-6.ap-south-1.compute.amazonaws.com:5000/notebook/update/${updateNotes}`,
         updateFields
       )
       .then((resp) => {
@@ -131,7 +131,7 @@ const NotebookPage = () => {
   const _deleteUser = () => {
     axios
       .delete(
-        `http://localhost:5000/notebook/delete/${deleteNotes}`
+        `http://ec2-3-7-254-6.ap-south-1.compute.amazonaws.com:5000/notebook/delete/${deleteNotes}`
       )
       .then((resp) => {
         if (resp) {
