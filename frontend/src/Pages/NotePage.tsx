@@ -55,7 +55,7 @@ const NotePage = () => {
 
   const _createUser = () => {
     if (_formValidation()) {
-      axios.post("http://ec2-52-66-249-241.ap-south-1.compute.amazonaws.com:5000/notes/new", noteFields).then((resp) => {
+      axios.post("http://localhost:5000/notes/new", noteFields).then((resp) => {
         if (resp) {
           console.log(resp);
           setSuccessToast(true);
@@ -75,7 +75,7 @@ const NotePage = () => {
     const _getUser = (e: any) => {
       if (e.key === "Enter") {
         axios
-          .get(`http://ec2-52-66-249-241.ap-south-1.compute.amazonaws.com:5000/notes/read/${findNotes}`)
+          .get(`http://localhost:5000/notes/read/${findNotes}`)
           .then((res) => {
             if (res.data) {
               console.log(res.data.resp);
@@ -92,7 +92,7 @@ const NotePage = () => {
   const _getUsers = () => {
     _handleReadAll();
     axios
-      .get("http://ec2-52-66-249-241.ap-south-1.compute.amazonaws.com:5000/notes/readAll")
+      .get("http://localhost:5000/notes/readAll")
       .then((res) => {
         if (res.data) {
           console.log(res.data);
@@ -114,7 +114,7 @@ const NotePage = () => {
   });
   const _updateUser = () => {
     axios
-      .put(`http://ec2-52-66-249-241.ap-south-1.compute.amazonaws.com:5000/notes/update/${updateNotes}`, updateFields)
+      .put(`http://localhost:5000/notes/update/${updateNotes}`, updateFields)
       .then((resp) => {
         if (resp) {
           console.log(resp);
@@ -132,7 +132,7 @@ const NotePage = () => {
 
   const _deleteUser = () => {
     axios
-      .delete(`http://ec2-52-66-249-241.ap-south-1.compute.amazonaws.com:5000/notes/delete/${deleteNotes}`)
+      .delete(`http://localhost:5000/notes/delete/${deleteNotes}`)
       .then((resp) => {
         if (resp) {
           console.log(resp);
