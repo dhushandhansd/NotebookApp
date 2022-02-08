@@ -153,7 +153,7 @@ const NotebookPage = () => {
   const [deleteUser, setDeleteUser] = useState(false);
 
   const _handleCreate = () => {
-    setCreate(!create);
+    setCreate(true);
     setWelcomeScreen(false);
     setRead(false);
     setReadAll(false);
@@ -164,7 +164,7 @@ const NotebookPage = () => {
   const _handleRead = () => {
     setCreate(false);
     setWelcomeScreen(false);
-    setRead(!read);
+    setRead(true);
     setReadAll(false);
     setUpdate(false);
     setDeleteUser(false);
@@ -174,7 +174,7 @@ const NotebookPage = () => {
     setCreate(false);
     setWelcomeScreen(false);
     setRead(false);
-    setReadAll(!readAll);
+    setReadAll(true);
     setUpdate(false);
     setDeleteUser(false);
   };
@@ -184,7 +184,7 @@ const NotebookPage = () => {
     setWelcomeScreen(false);
     setRead(false);
     setReadAll(false);
-    setUpdate(!update);
+    setUpdate(true);
     setDeleteUser(false);
   };
 
@@ -194,7 +194,7 @@ const NotebookPage = () => {
     setRead(false);
     setReadAll(false);
     setUpdate(false);
-    setDeleteUser(!deleteUser);
+    setDeleteUser(true);
   };
 
   return (
