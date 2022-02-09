@@ -57,7 +57,6 @@ const NotePage = () => {
     if (_formValidation()) {
       axios.post("http://3.108.136.43:5000/notes/new", noteFields).then((resp) => {
         if (resp) {
-          console.log(resp);
           setSuccessToast(true);
 
           setTimeout(() => {
@@ -78,7 +77,6 @@ const NotePage = () => {
           .get(`http://3.108.136.43:5000/notes/read/${findNotes}`)
           .then((res) => {
             if (res.data) {
-              console.log(res.data.resp);
               setNote(res.data.resp);
             }
           })
@@ -95,7 +93,6 @@ const NotePage = () => {
       .get("http://3.108.136.43:5000/notes/readAll")
       .then((res) => {
         if (res.data) {
-          console.log(res.data);
           setNotes(res.data.resp);
         }
       })
@@ -117,7 +114,6 @@ const NotePage = () => {
       .put(`http://3.108.136.43:5000/notes/update/${updateNotes}`, updateFields)
       .then((resp) => {
         if (resp) {
-          console.log(resp);
           setUpdateToast(true);
 
           setTimeout(() => {
@@ -135,7 +131,6 @@ const NotePage = () => {
       .delete(`http://3.108.136.43:5000/notes/delete/${deleteNotes}`)
       .then((resp) => {
         if (resp) {
-          console.log(resp);
           setDeleteToast(true);
 
           setTimeout(() => {

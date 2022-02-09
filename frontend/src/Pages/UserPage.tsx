@@ -73,7 +73,6 @@ const UserPage = () => {
         .post("http://3.108.136.43:5000/user/new", userFields)
         .then((resp) => {
           if (resp) {
-            console.log(resp);
             setSuccessToast(true);
 
             setTimeout(() => {
@@ -94,7 +93,6 @@ const UserPage = () => {
         .get(`http://3.108.136.43:5000/user/getUser/${findUser}`)
         .then((res) => {
           if (res.data) {
-            console.log(res.data.resp);
             setUser(res.data.resp);
           }
         })
@@ -135,7 +133,6 @@ const UserPage = () => {
       )
       .then((resp) => {
         if (resp) {
-          console.log(resp);
           setUpdateToast(true);
 
           setTimeout(() => {
@@ -153,7 +150,6 @@ const UserPage = () => {
       .delete(`http://3.108.136.43:5000/user/delete/${deleteUsername}`)
       .then((resp) => {
         if (resp) {
-          console.log(resp);
           setDeleteToast(true);
 
           setTimeout(() => {

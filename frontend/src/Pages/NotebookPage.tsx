@@ -48,7 +48,6 @@ const NotebookPage = () => {
         )
         .then((resp) => {
           if (resp) {
-            console.log(resp);
             setSuccessToast(true);
 
             setTimeout(() => {
@@ -71,7 +70,6 @@ const NotebookPage = () => {
         )
         .then((res) => {
           if (res.data) {
-            console.log(res.data.resp);
             setNote(res.data.resp);
           }
         })
@@ -90,7 +88,6 @@ const NotebookPage = () => {
       )
       .then((res) => {
         if (res.data) {
-          console.log(res.data);
           setNotes(res.data.resp);
         }
       })
@@ -115,7 +112,6 @@ const NotebookPage = () => {
       )
       .then((resp) => {
         if (resp) {
-          console.log(resp);
           setUpdateToast(true);
 
           setTimeout(() => {
@@ -135,7 +131,6 @@ const NotebookPage = () => {
       )
       .then((resp) => {
         if (resp) {
-          console.log(resp);
           setDeleteToast(true);
 
           setTimeout(() => {
