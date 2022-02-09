@@ -20,11 +20,11 @@ import "../AppS.css";
 const UserPage = () => {
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState<APIUser>({
-    key:0,
-    userName:"",
-    name:"",
-    email:"",
-    contactNumber:"",
+    key: 0,
+    userName: "",
+    name: "",
+    email: "",
+    contactNumber: "",
   });
 
   //Create User
@@ -69,16 +69,18 @@ const UserPage = () => {
 
   const _createUser = () => {
     if (_formValidation()) {
-      axios.post("http://ec2-3-7-125-176.ap-south-1.compute.amazonaws.com:5000/user/new", userFields).then((resp) => {
-        if (resp) {
-          console.log(resp);
-          setSuccessToast(true);
+      axios
+        .post("http://3.108.136.43:5000/user/new", userFields)
+        .then((resp) => {
+          if (resp) {
+            console.log(resp);
+            setSuccessToast(true);
 
-          setTimeout(() => {
-            setSuccessToast(false);
-          }, 2000);
-        }
-      });
+            setTimeout(() => {
+              setSuccessToast(false);
+            }, 2000);
+          }
+        });
     } else {
       console.log("Please fill all the fields");
     }
@@ -89,7 +91,7 @@ const UserPage = () => {
   const _getUser = (e: any) => {
     if (e.key === "Enter") {
       axios
-        .get(`http://ec2-3-7-125-176.ap-south-1.compute.amazonaws.com:5000/user/getUser/${findUser}`)
+        .get(`http://3.108.136.43:5000/user/getUser/${findUser}`)
         .then((res) => {
           if (res.data) {
             console.log(res.data.resp);
@@ -106,7 +108,7 @@ const UserPage = () => {
   const _getUsers = () => {
     _handleReadAll();
     axios
-      .get("http://ec2-3-7-125-176.ap-south-1.compute.amazonaws.com:5000/user/getUsers")
+      .get("http://3.108.136.43:5000/user/getUsers")
       .then((res) => {
         if (res.data) {
           setUsers(res.data.resp);
@@ -127,7 +129,10 @@ const UserPage = () => {
   });
   const _updateUser = () => {
     axios
-      .put(`http://ec2-3-7-125-176.ap-south-1.compute.amazonaws.com:5000/user/update/${updateUsername}`, updateFields)
+      .put(
+        `http://3.108.136.43:5000/user/update/${updateUsername}`,
+        updateFields
+      )
       .then((resp) => {
         if (resp) {
           console.log(resp);
@@ -145,7 +150,7 @@ const UserPage = () => {
 
   const _deleteUser = () => {
     axios
-      .delete(`http://ec2-3-7-125-176.ap-south-1.compute.amazonaws.com:5000/user/delete/${deleteUsername}`)
+      .delete(`http://3.108.136.43:5000/user/delete/${deleteUsername}`)
       .then((resp) => {
         if (resp) {
           console.log(resp);
