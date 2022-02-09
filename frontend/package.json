@@ -5,7 +5,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "start" : "npm run build && (cd server && npm run start)"
+    "start": "npm run build && (cd server && npm run start)"
   },
   "dependencies": {
     "@types/node": "^17.0.15",
