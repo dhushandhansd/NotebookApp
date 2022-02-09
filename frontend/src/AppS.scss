@@ -1,7 +1,9 @@
+@import './colors';
+
 .user-window {
   width: 100%;
   height: 100vh;
-  background-color: #b0b4c8;
+  background-color: $mild-grey;
   overflow: auto;
 
   .users-container-wrapper {
@@ -16,12 +18,12 @@
       width: 80%;
       height: 80%;
       display: flex;
-      background-color: white;
+      background-color: $white;
       border: none;
-      box-shadow: 16px 16px 16px #00000029;
+      box-shadow: 16px 16px 16px $box-shadow;
       border-radius: 20px;
       opacity: 1;
-      color: white;
+      color: $white;
       flex-direction: row;
 
       .operations {
@@ -38,8 +40,8 @@
         }
 
         .ope:hover {
-          background-color: #b0b4c8;
-          color: black;
+          background-color: $hover-white;
+          color: $black;
         }
 
         .create-user,
@@ -49,8 +51,8 @@
         .delete-user {
           height: 45px;
           margin: 15px 20px;
-          background-color: #0e0239;
-          color: white;
+          background-color: $accent-blue;
+          color: $white;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -90,7 +92,7 @@
             color: white;
             font-weight: bold;
             margin-right: 20px;
-            text-shadow: 16px 16px 16px #00000029;
+            text-shadow: 16px 16px 16px $box-shadow;
           }
 
           input {
@@ -99,7 +101,7 @@
             width: 60%;
             border: none;
             border-radius: 20px;
-            box-shadow: 16px 16px 16px #00000029;
+            box-shadow: 16px 16px 16px $box-shadow;
           }
 
           input:focus {
