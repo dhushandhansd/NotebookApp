@@ -9,7 +9,9 @@ npm install
 echo "Installing Node Modules Completed"
 
 echo "Build and Deployment Started"
-pm2 start npm --name "Frontend" -- start
+# pm2 start npm --name "Frontend" -- start
+pm2 start pm2F.json
+
 
 echo "PM2 Save"
 pm2 save
