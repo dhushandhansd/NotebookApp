@@ -1,7 +1,6 @@
 {
     "apps" : {
         "name" : "Backend",
-        "script" : "src/index.ts",
-        "exec_mode": "cluster"
+        "script" : "src/index.ts"
     }
 }

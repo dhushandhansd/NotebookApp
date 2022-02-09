@@ -1,7 +1,6 @@
 {
     "apps" : {
         "name" : "Frontend",
-        "script" : "start npm",
-        "exec_mode": "cluster"
+        "script" : "start npm"
     }
 }
