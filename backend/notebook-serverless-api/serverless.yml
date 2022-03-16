@@ -1,0 +1,88 @@
+service: notebook-serverless-api
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+
+functions:
+  api:
+    handler: handler.handler
+    events:
+    
+      - http:
+        path: /new,
+        method: post,
+        cors: true
+      - http:
+        path: /read,
+        method: get,
+        cors: true
+      - http:
+        path: /readAll,
+        method: get,
+        cors: true
+      - http:
+        path: /update,
+        method: put,
+        cors: true
+      - http:
+        path: /delete,
+        method: delete,
+        cors: true
+      - http:
+        path: /deteteAll,
+        method: delete,
+        cors: true
+
+      - http:
+        path: /newUser,
+        method: post,
+        cors: true
+      - http:
+        path: /getUsers,
+        method: get,
+        cors: true
+      - http:
+        path: /getUser,
+        method: get,
+        cors: true
+      - http:
+        path: /updateUser,
+        method: put,
+        cors: true
+      - http:
+        path: /deleteUser,
+        method: delete,
+        cors: true
+      - http:
+        path: /deleteAllUsers,
+        method: delete,
+        cors: true
+
+      - http:
+        path: /newNote,
+        method: post,
+        cors: true
+      - http:
+        path: /readNote,
+        method: get,
+        cors: true
+      - http:
+        path: /readAllNote,
+        method: get,
+        cors: true
+      - http:
+        path: /updateNote,
+        method: put,
+        cors: true
+      - http:
+        path: /deleteNote,
+        method: delete,
+        cors: true
+      - http:
+        path: /deleteAllNotes,
+        method: delete,
+        cors: true
+      
+
